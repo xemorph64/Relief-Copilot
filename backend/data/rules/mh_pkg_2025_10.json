@@ -1,0 +1,587 @@
+[
+ {
+  "rule_id": "MH.PKG_2025_10.HOUSE_FULL_PLAIN",
+  "status": "drafted",
+  "verifications": [],
+  "layer": "package",
+  "asset_class": "house_full_plain",
+  "hazards": [
+   "flood",
+   "heavy_rain"
+  ],
+  "applies_from": "2025-06-01",
+  "applies_to": "2025-09-30",
+  "geo": "*",
+  "geo_note": "Applies to declared affected areas; affected-taluka list is a separate GR (to ingest)",
+  "amount": {
+   "type": "flat",
+   "value": 120000
+  },
+  "cap_count": null,
+  "cap_note": null,
+  "gates": [],
+  "requires": [
+   "photo",
+   "location",
+   "panchanama"
+  ],
+  "supersedes": [],
+  "source": {
+   "gr_ref": "202510102357501519",
+   "gr_number": "सीएलएस-२०२५/प्र.क्र.३६५/म-3 (मदत-1)",
+   "date": "2025-10-10",
+   "department": "महसूल व वन विभाग",
+   "url": "https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202510102357501519.pdf",
+   "sha256": "d44e57d2c75ba3082b219c904a22284c6a34337b49deecb77eb2827b8da1d94b",
+   "page": 2,
+   "item": "2.4",
+   "quote": "रू.1,20,000/- प्रति घर सपाट भागातील"
+  }
+ },
+ {
+  "rule_id": "MH.PKG_2025_10.HOUSE_FULL_HILLY",
+  "status": "drafted",
+  "verifications": [],
+  "layer": "package",
+  "asset_class": "house_full_hilly",
+  "hazards": [
+   "flood",
+   "heavy_rain"
+  ],
+  "applies_from": "2025-06-01",
+  "applies_to": "2025-09-30",
+  "geo": "*",
+  "geo_note": "Applies to declared affected areas; affected-taluka list is a separate GR (to ingest)",
+  "amount": {
+   "type": "flat",
+   "value": 130000
+  },
+  "cap_count": null,
+  "cap_note": null,
+  "gates": [],
+  "requires": [
+   "photo",
+   "location",
+   "panchanama"
+  ],
+  "supersedes": [],
+  "source": {
+   "gr_ref": "202510102357501519",
+   "gr_number": "सीएलएस-२०२५/प्र.क्र.३६५/म-3 (मदत-1)",
+   "date": "2025-10-10",
+   "department": "महसूल व वन विभाग",
+   "url": "https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202510102357501519.pdf",
+   "sha256": "d44e57d2c75ba3082b219c904a22284c6a34337b49deecb77eb2827b8da1d94b",
+   "page": 2,
+   "item": "2.4",
+   "quote": "रू.1,30,000/- डोंगराळ भागातील"
+  }
+ },
+ {
+  "rule_id": "MH.PKG_2025_10.HOUSE_PARTIAL_PUCCA",
+  "status": "drafted",
+  "verifications": [],
+  "layer": "package",
+  "asset_class": "house_partial_pucca",
+  "hazards": [
+   "flood",
+   "heavy_rain"
+  ],
+  "applies_from": "2025-06-01",
+  "applies_to": "2025-09-30",
+  "geo": "*",
+  "geo_note": "Applies to declared affected areas; affected-taluka list is a separate GR (to ingest)",
+  "amount": {
+   "type": "flat",
+   "value": 6500
+  },
+  "cap_count": null,
+  "cap_note": null,
+  "gates": [],
+  "requires": [
+   "photo",
+   "location",
+   "panchanama"
+  ],
+  "supersedes": [],
+  "source": {
+   "gr_ref": "202510102357501519",
+   "gr_number": "सीएलएस-२०२५/प्र.क्र.३६५/म-3 (मदत-1)",
+   "date": "2025-10-10",
+   "department": "महसूल व वन विभाग",
+   "url": "https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202510102357501519.pdf",
+   "sha256": "d44e57d2c75ba3082b219c904a22284c6a34337b49deecb77eb2827b8da1d94b",
+   "page": 2,
+   "item": "2.5",
+   "quote": "रू.6500/- प्रति घर (पक्क्या घरांसाठी) (किमान 15%)"
+  }
+ },
+ {
+  "rule_id": "MH.PKG_2025_10.HOUSE_PARTIAL_KUTCHA",
+  "status": "drafted",
+  "verifications": [],
+  "layer": "package",
+  "asset_class": "house_partial_kutcha",
+  "hazards": [
+   "flood",
+   "heavy_rain"
+  ],
+  "applies_from": "2025-06-01",
+  "applies_to": "2025-09-30",
+  "geo": "*",
+  "geo_note": "Applies to declared affected areas; affected-taluka list is a separate GR (to ingest)",
+  "amount": {
+   "type": "flat",
+   "value": 4000
+  },
+  "cap_count": null,
+  "cap_note": null,
+  "gates": [],
+  "requires": [
+   "photo",
+   "location",
+   "panchanama"
+  ],
+  "supersedes": [],
+  "source": {
+   "gr_ref": "202510102357501519",
+   "gr_number": "सीएलएस-२०२५/प्र.क्र.३६५/म-3 (मदत-1)",
+   "date": "2025-10-10",
+   "department": "महसूल व वन विभाग",
+   "url": "https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202510102357501519.pdf",
+   "sha256": "d44e57d2c75ba3082b219c904a22284c6a34337b49deecb77eb2827b8da1d94b",
+   "page": 2,
+   "item": "2.5",
+   "quote": "रू.4000/- प्रति घर (कच्च्या घरांसाठी) (किमान 15%)"
+  }
+ },
+ {
+  "rule_id": "MH.PKG_2025_10.HUT",
+  "status": "drafted",
+  "verifications": [],
+  "layer": "package",
+  "asset_class": "hut",
+  "hazards": [
+   "flood",
+   "heavy_rain"
+  ],
+  "applies_from": "2025-06-01",
+  "applies_to": "2025-09-30",
+  "geo": "*",
+  "geo_note": "Applies to declared affected areas; affected-taluka list is a separate GR (to ingest)",
+  "amount": {
+   "type": "flat",
+   "value": 8000
+  },
+  "cap_count": null,
+  "cap_note": null,
+  "gates": [],
+  "requires": [
+   "photo",
+   "location",
+   "panchanama"
+  ],
+  "supersedes": [],
+  "source": {
+   "gr_ref": "202510102357501519",
+   "gr_number": "सीएलएस-२०२५/प्र.क्र.३६५/म-3 (मदत-1)",
+   "date": "2025-10-10",
+   "department": "महसूल व वन विभाग",
+   "url": "https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202510102357501519.pdf",
+   "sha256": "d44e57d2c75ba3082b219c904a22284c6a34337b49deecb77eb2827b8da1d94b",
+   "page": 2,
+   "item": "2.6",
+   "quote": "झोपडी रू.8000/- प्रति झोपडी"
+  }
+ },
+ {
+  "rule_id": "MH.PKG_2025_10.CATTLE_SHED",
+  "status": "drafted",
+  "verifications": [],
+  "layer": "package",
+  "asset_class": "cattle_shed",
+  "hazards": [
+   "flood",
+   "heavy_rain"
+  ],
+  "applies_from": "2025-06-01",
+  "applies_to": "2025-09-30",
+  "geo": "*",
+  "geo_note": "Applies to declared affected areas; affected-taluka list is a separate GR (to ingest)",
+  "amount": {
+   "type": "flat",
+   "value": 3000
+  },
+  "cap_count": null,
+  "cap_note": null,
+  "gates": [],
+  "requires": [
+   "photo",
+   "location",
+   "panchanama"
+  ],
+  "supersedes": [],
+  "source": {
+   "gr_ref": "202510102357501519",
+   "gr_number": "सीएलएस-२०२५/प्र.क्र.३६५/म-3 (मदत-1)",
+   "date": "2025-10-10",
+   "department": "महसूल व वन विभाग",
+   "url": "https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202510102357501519.pdf",
+   "sha256": "d44e57d2c75ba3082b219c904a22284c6a34337b49deecb77eb2827b8da1d94b",
+   "page": 2,
+   "item": "2.7",
+   "quote": "गोठा रू.3000/- प्रति गोठा"
+  }
+ },
+ {
+  "rule_id": "MH.PKG_2025_10.MILCH_LARGE",
+  "status": "drafted",
+  "verifications": [],
+  "layer": "package",
+  "asset_class": "milch_large",
+  "hazards": [
+   "flood",
+   "heavy_rain"
+  ],
+  "applies_from": "2025-06-01",
+  "applies_to": "2025-09-30",
+  "geo": "*",
+  "geo_note": "Applies to declared affected areas; affected-taluka list is a separate GR (to ingest)",
+  "amount": {
+   "type": "per_unit",
+   "value": 37500
+  },
+  "cap_count": null,
+  "cap_note": "Livestock count ceiling of the 27-03-2023 norms relaxed for this package (p.4, para 5)",
+  "gates": [],
+  "requires": [
+   "photo",
+   "location",
+   "panchanama"
+  ],
+  "supersedes": [],
+  "source": {
+   "gr_ref": "202510102357501519",
+   "gr_number": "सीएलएस-२०२५/प्र.क्र.३६५/म-3 (मदत-1)",
+   "date": "2025-10-10",
+   "department": "महसूल व वन विभाग",
+   "url": "https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202510102357501519.pdf",
+   "sha256": "d44e57d2c75ba3082b219c904a22284c6a34337b49deecb77eb2827b8da1d94b",
+   "page": 2,
+   "item": "2.8",
+   "quote": "दुधाळ जनावरे - रू.37,500/- प्रति जनावर"
+  }
+ },
+ {
+  "rule_id": "MH.PKG_2025_10.DRAUGHT_LARGE",
+  "status": "drafted",
+  "verifications": [],
+  "layer": "package",
+  "asset_class": "draught_large",
+  "hazards": [
+   "flood",
+   "heavy_rain"
+  ],
+  "applies_from": "2025-06-01",
+  "applies_to": "2025-09-30",
+  "geo": "*",
+  "geo_note": "Applies to declared affected areas; affected-taluka list is a separate GR (to ingest)",
+  "amount": {
+   "type": "per_unit",
+   "value": 32000
+  },
+  "cap_count": null,
+  "cap_note": "Livestock count ceiling of the 27-03-2023 norms relaxed for this package (p.4, para 5)",
+  "gates": [],
+  "requires": [
+   "photo",
+   "location",
+   "panchanama"
+  ],
+  "supersedes": [],
+  "source": {
+   "gr_ref": "202510102357501519",
+   "gr_number": "सीएलएस-२०२५/प्र.क्र.३६५/म-3 (मदत-1)",
+   "date": "2025-10-10",
+   "department": "महसूल व वन विभाग",
+   "url": "https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202510102357501519.pdf",
+   "sha256": "d44e57d2c75ba3082b219c904a22284c6a34337b49deecb77eb2827b8da1d94b",
+   "page": 2,
+   "item": "2.8",
+   "quote": "ओढकाम करणारी जनावरे - रू.32,000/- प्रति जनावर"
+  }
+ },
+ {
+  "rule_id": "MH.PKG_2025_10.DRAUGHT_SMALL",
+  "status": "drafted",
+  "verifications": [],
+  "layer": "package",
+  "asset_class": "draught_small",
+  "hazards": [
+   "flood",
+   "heavy_rain"
+  ],
+  "applies_from": "2025-06-01",
+  "applies_to": "2025-09-30",
+  "geo": "*",
+  "geo_note": "Applies to declared affected areas; affected-taluka list is a separate GR (to ingest)",
+  "amount": {
+   "type": "per_unit",
+   "value": 20000
+  },
+  "cap_count": null,
+  "cap_note": "Livestock count ceiling of the 27-03-2023 norms relaxed for this package (p.4, para 5)",
+  "gates": [],
+  "requires": [
+   "photo",
+   "location",
+   "panchanama"
+  ],
+  "supersedes": [],
+  "source": {
+   "gr_ref": "202510102357501519",
+   "gr_number": "सीएलएस-२०२५/प्र.क्र.३६५/म-3 (मदत-1)",
+   "date": "2025-10-10",
+   "department": "महसूल व वन विभाग",
+   "url": "https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202510102357501519.pdf",
+   "sha256": "d44e57d2c75ba3082b219c904a22284c6a34337b49deecb77eb2827b8da1d94b",
+   "page": 2,
+   "item": "2.8",
+   "quote": "लहान जनावरे - रू.20,000/- प्रति जनावर"
+  }
+ },
+ {
+  "rule_id": "MH.PKG_2025_10.SHEEP_GOAT",
+  "status": "drafted",
+  "verifications": [],
+  "layer": "package",
+  "asset_class": "sheep_goat",
+  "hazards": [
+   "flood",
+   "heavy_rain"
+  ],
+  "applies_from": "2025-06-01",
+  "applies_to": "2025-09-30",
+  "geo": "*",
+  "geo_note": "Applies to declared affected areas; affected-taluka list is a separate GR (to ingest)",
+  "amount": {
+   "type": "per_unit",
+   "value": 4000
+  },
+  "cap_count": null,
+  "cap_note": "Livestock count ceiling of the 27-03-2023 norms relaxed for this package (p.4, para 5)",
+  "gates": [],
+  "requires": [
+   "photo",
+   "location",
+   "panchanama"
+  ],
+  "supersedes": [],
+  "source": {
+   "gr_ref": "202510102357501519",
+   "gr_number": "सीएलएस-२०२५/प्र.क्र.३६५/म-3 (मदत-1)",
+   "date": "2025-10-10",
+   "department": "महसूल व वन विभाग",
+   "url": "https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202510102357501519.pdf",
+   "sha256": "d44e57d2c75ba3082b219c904a22284c6a34337b49deecb77eb2827b8da1d94b",
+   "page": 2,
+   "item": "2.8",
+   "quote": "शेळी/मेंढी - रू.4000/- प्रति जनावर"
+  }
+ },
+ {
+  "rule_id": "MH.PKG_2025_10.POULTRY",
+  "status": "drafted",
+  "verifications": [],
+  "layer": "package",
+  "asset_class": "poultry",
+  "hazards": [
+   "flood",
+   "heavy_rain"
+  ],
+  "applies_from": "2025-06-01",
+  "applies_to": "2025-09-30",
+  "geo": "*",
+  "geo_note": "Applies to declared affected areas; affected-taluka list is a separate GR (to ingest)",
+  "amount": {
+   "type": "per_unit",
+   "value": 100
+  },
+  "cap_count": null,
+  "cap_note": "Livestock count ceiling of the 27-03-2023 norms relaxed for this package (p.4, para 5)",
+  "gates": [],
+  "requires": [
+   "photo",
+   "location",
+   "panchanama"
+  ],
+  "supersedes": [],
+  "source": {
+   "gr_ref": "202510102357501519",
+   "gr_number": "सीएलएस-२०२५/प्र.क्र.३६५/म-3 (मदत-1)",
+   "date": "2025-10-10",
+   "department": "महसूल व वन विभाग",
+   "url": "https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202510102357501519.pdf",
+   "sha256": "d44e57d2c75ba3082b219c904a22284c6a34337b49deecb77eb2827b8da1d94b",
+   "page": 2,
+   "item": "2.8",
+   "quote": "कुक्कुटपालन - रु.100 प्रति कोंबडी"
+  }
+ },
+ {
+  "rule_id": "MH.PKG_2025_10.BOAT_PARTIAL",
+  "status": "drafted",
+  "verifications": [],
+  "layer": "package",
+  "asset_class": "boat_partial",
+  "hazards": [
+   "flood",
+   "heavy_rain"
+  ],
+  "applies_from": "2025-06-01",
+  "applies_to": "2025-09-30",
+  "geo": "*",
+  "geo_note": "Applies to declared affected areas; affected-taluka list is a separate GR (to ingest)",
+  "amount": {
+   "type": "flat",
+   "value": 6000
+  },
+  "cap_count": null,
+  "cap_note": null,
+  "gates": [],
+  "requires": [
+   "photo",
+   "location",
+   "panchanama"
+  ],
+  "supersedes": [],
+  "source": {
+   "gr_ref": "202510102357501519",
+   "gr_number": "सीएलएस-२०२५/प्र.क्र.३६५/म-3 (मदत-1)",
+   "date": "2025-10-10",
+   "department": "महसूल व वन विभाग",
+   "url": "https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202510102357501519.pdf",
+   "sha256": "d44e57d2c75ba3082b219c904a22284c6a34337b49deecb77eb2827b8da1d94b",
+   "page": 3,
+   "item": "2.11",
+   "quote": "रु.6000 बोटींची अंशत: दुरुस्ती"
+  }
+ },
+ {
+  "rule_id": "MH.PKG_2025_10.BOAT_FULL",
+  "status": "drafted",
+  "verifications": [],
+  "layer": "package",
+  "asset_class": "boat_full",
+  "hazards": [
+   "flood",
+   "heavy_rain"
+  ],
+  "applies_from": "2025-06-01",
+  "applies_to": "2025-09-30",
+  "geo": "*",
+  "geo_note": "Applies to declared affected areas; affected-taluka list is a separate GR (to ingest)",
+  "amount": {
+   "type": "flat",
+   "value": 15000
+  },
+  "cap_count": null,
+  "cap_note": null,
+  "gates": [],
+  "requires": [
+   "photo",
+   "location",
+   "panchanama"
+  ],
+  "supersedes": [],
+  "source": {
+   "gr_ref": "202510102357501519",
+   "gr_number": "सीएलएस-२०२५/प्र.क्र.३६५/म-3 (मदत-1)",
+   "date": "2025-10-10",
+   "department": "महसूल व वन विभाग",
+   "url": "https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202510102357501519.pdf",
+   "sha256": "d44e57d2c75ba3082b219c904a22284c6a34337b49deecb77eb2827b8da1d94b",
+   "page": 3,
+   "item": "2.11",
+   "quote": "रु.15,000/- पूर्णत: नष्ट झालेल्या बोटीकरिता"
+  }
+ },
+ {
+  "rule_id": "MH.PKG_2025_10.NET_PARTIAL",
+  "status": "drafted",
+  "verifications": [],
+  "layer": "package",
+  "asset_class": "net_partial",
+  "hazards": [
+   "flood",
+   "heavy_rain"
+  ],
+  "applies_from": "2025-06-01",
+  "applies_to": "2025-09-30",
+  "geo": "*",
+  "geo_note": "Applies to declared affected areas; affected-taluka list is a separate GR (to ingest)",
+  "amount": {
+   "type": "flat",
+   "value": 3000
+  },
+  "cap_count": null,
+  "cap_note": null,
+  "gates": [],
+  "requires": [
+   "photo",
+   "location",
+   "panchanama"
+  ],
+  "supersedes": [],
+  "source": {
+   "gr_ref": "202510102357501519",
+   "gr_number": "सीएलएस-२०२५/प्र.क्र.३६५/म-3 (मदत-1)",
+   "date": "2025-10-10",
+   "department": "महसूल व वन विभाग",
+   "url": "https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202510102357501519.pdf",
+   "sha256": "d44e57d2c75ba3082b219c904a22284c6a34337b49deecb77eb2827b8da1d94b",
+   "page": 3,
+   "item": "2.11",
+   "quote": "रु.3000 अंशत: बाधित झालेल्या जाळ्यांच्या दुरुस्तीसाठी"
+  }
+ },
+ {
+  "rule_id": "MH.PKG_2025_10.NET_FULL",
+  "status": "drafted",
+  "verifications": [],
+  "layer": "package",
+  "asset_class": "net_full",
+  "hazards": [
+   "flood",
+   "heavy_rain"
+  ],
+  "applies_from": "2025-06-01",
+  "applies_to": "2025-09-30",
+  "geo": "*",
+  "geo_note": "Applies to declared affected areas; affected-taluka list is a separate GR (to ingest)",
+  "amount": {
+   "type": "flat",
+   "value": 4000
+  },
+  "cap_count": null,
+  "cap_note": null,
+  "gates": [],
+  "requires": [
+   "photo",
+   "location",
+   "panchanama"
+  ],
+  "supersedes": [],
+  "source": {
+   "gr_ref": "202510102357501519",
+   "gr_number": "सीएलएस-२०२५/प्र.क्र.३६५/म-3 (मदत-1)",
+   "date": "2025-10-10",
+   "department": "महसूल व वन विभाग",
+   "url": "https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202510102357501519.pdf",
+   "sha256": "d44e57d2c75ba3082b219c904a22284c6a34337b49deecb77eb2827b8da1d94b",
+   "page": 3,
+   "item": "2.11",
+   "quote": "रु.4000 पूर्णत: नष्ट झालेल्या जाळ्यांसाठी"
+  }
+ }
+]
