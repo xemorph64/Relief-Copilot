@@ -43,6 +43,29 @@ async def send_document(to: str, link: str, filename: str, caption: str = "") ->
                        "document": {"link": link, "filename": filename, "caption": caption[:1024]}})
 
 
+async def send_audio(to: str, data: bytes, mime: str = "audio/wav") -> dict:
+    """Upload then send a voice clip (TTS playback of the summary)."""
+    async with httpx.AsyncClient(timeout=60) as c:
+        up = (await c.post(f"{_graph()}/{settings.wa_phone_number_id}/media", headers=_headers(),
+                           files={"file": ("playback.wav", data, mime)},
+                           data={"messaging_product": "whatsapp", "type": "audio"})).raise_for_status().json()
+    return await send({"to": to, "type": "audio", "audio": {"id": up["id"]}})
+
+
+async def send_flow(to: str, text: str, claim_id: int) -> dict:
+    """Open the registered review Flow in the chat (falls back to buttons if no flow id)."""
+    if not settings.wa_flow_id:
+        return await send_buttons(to, text, [
+            ("confirm", "Confirm"), ("change", "Change"), ("human", "Talk to official")])
+    return await send({"to": to, "type": "interactive", "interactive": {
+        "type": "flow", "body": {"text": text[:1024]},
+        "action": {"parameters": {
+            "flow_message_version": "3", "flow_id": settings.wa_flow_id,
+            "flow_cta": "Review claim", "flow_token": str(claim_id),
+            "flow_action": "navigate",
+            "flow_action_payload": {"screen": "REVIEW"}}}}})
+
+
 async def mark_read(message_id: str) -> None:
     try:
         await send({"status": "read", "message_id": message_id})

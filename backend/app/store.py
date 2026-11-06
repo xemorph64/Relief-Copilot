@@ -69,7 +69,7 @@ def save_claim(c: dict) -> None:
                (c["state"], c.get("lang"), json.dumps(c["data"], ensure_ascii=False), time.time(), c["id"]))
 
 
-def event(claim_id: int, kind: str, payload: dict, actor: str = "agent") -> None:
+def event(claim_id: int | None, kind: str, payload: dict, actor: str = "agent") -> None:
     ts = time.time()
     eid = db.execute("INSERT INTO events(claim_id, kind, payload, actor, ts) VALUES(?,?,?,?,?)",
                      (claim_id, kind, json.dumps(payload, ensure_ascii=False, default=str), actor, ts)).lastrowid

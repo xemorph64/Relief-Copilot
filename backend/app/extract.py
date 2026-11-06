@@ -1,7 +1,9 @@
-"""Claude fills the claim form fields from what the citizen said. It never computes money."""
+"""Claude/Groq fill the claim form fields from what the citizen said. It never computes money."""
+import json
 from typing import Literal, Optional
 
 import anthropic
+import httpx
 from pydantic import BaseModel
 
 from app.config import settings
@@ -57,6 +59,14 @@ amount_citizen_expects and nothing else.
 
 
 async def extract(messages_text: str, known: dict, today: str) -> Facts:
+    if settings.llm_provider == "groq":
+        return await groq_extract(messages_text, known, today)
+    if settings.anthropic_api_key:
+        return await claude_extract(messages_text, known, today)
+    raise RuntimeError("no LLM configured: set llm_provider + GROQ_API_KEY or ANTHROPIC_API_KEY")
+
+
+async def claude_extract(messages_text: str, known: dict, today: str) -> Facts:
     client = anthropic.AsyncAnthropic(api_key=settings.anthropic_api_key or None)
     r = await client.beta.messages.parse(
         model=settings.claude_model,
@@ -73,3 +83,42 @@ async def extract(messages_text: str, known: dict, today: str) -> Facts:
     if r.stop_reason == "refusal" or r.parsed_output is None:
         raise RuntimeError(f"extraction failed: stop_reason={r.stop_reason}")
     return r.parsed_output
+
+
+# --- Groq (OpenAI-compatible chat completions with strict JSON schema) ---
+
+GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
+
+
+def _strict_schema(schema: dict) -> dict:
+    """Groq strict mode: every object needs additionalProperties=false and all keys required."""
+    if isinstance(schema, dict):
+        if schema.get("type") == "object":
+            schema["additionalProperties"] = False
+            schema["required"] = sorted(schema.get("properties", {}))
+        for v in schema.values():
+            _strict_schema(v)
+    elif isinstance(schema, list):
+        for item in schema:
+            _strict_schema(item)
+    return schema
+
+
+async def groq_extract(messages_text: str, known: dict, today: str) -> Facts:
+    schema = _strict_schema(Facts.model_json_schema())
+    payload = {
+        "model": settings.groq_model,
+        "max_tokens": 4096,
+        "response_format": {"type": "json_schema", "json_schema": {"name": "facts", "schema": schema, "strict": True}},
+        "messages": [
+            {"role": "system", "content": SYSTEM},
+            {"role": "user", "content":
+                f"TODAY: {today}\nAlready known (from GPS / earlier answers): {known}\n\n"
+                f"Citizen messages, oldest first:\n{messages_text}"},
+        ],
+    }
+    async with httpx.AsyncClient(timeout=60) as client:
+        r = await client.post(GROQ_URL, json=payload,
+                              headers={"Authorization": f"Bearer {settings.groq_api_key}"})
+        r.raise_for_status()
+        return Facts.model_validate(json.loads(r.json()["choices"][0]["message"]["content"]))

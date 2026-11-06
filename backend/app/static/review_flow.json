@@ -1,0 +1,79 @@
+{
+  "version": "3.0",
+  "screens": [
+    {
+      "id": "REVIEW",
+      "title": "$data.labels.review_head",
+      "data": {
+        "applicant": "applicant",
+        "place": "place",
+        "hazard_date": "hazard_date",
+        "lines": "lines",
+        "total": "total",
+        "labels": "labels"
+      },
+      "layout": {
+        "type": "SingleColumnLayout",
+        "children": [
+          {
+            "type": "Text",
+            "text": "${data.applicant} — ${data.place}\n${data.hazard_date}",
+            "style": "bold"
+          },
+          {
+            "type": "DynamicFormContainer",
+            "name": "lines",
+            "item": {
+              "type": "TextHeading",
+              "text": "${form.text}",
+              "description": "${form.citation}",
+              "children": [
+                {
+                  "type": "Text",
+                  "text": "${#if($form.state === 'not_verified')}${data.labels.not_verified}${#else}${#if($form.state === 'needs_review')}${data.labels.needs_review}${/if}${/if}",
+                  "style": "error",
+                  "visible": "${$form.state !== 'ok'}"
+                }
+              ]
+            }
+          },
+          {
+            "type": "Text",
+            "text": "${#if($data.total !== '')}${data.labels.total}: ${data.total}${/if}",
+            "style": "bold"
+          },
+          {
+            "type": "Text",
+            "text": "${data.labels.confirm_q}",
+            "style": "bold"
+          },
+          {
+            "type": "Footer",
+            "label": "${data.labels.btn_yes}",
+            "on-click-action": {
+              "name": "data_exchange",
+              "payload": { "action": "confirm" }
+            }
+          },
+          {
+            "type": "Footer",
+            "label": "${data.labels.btn_change}",
+            "on-click-action": {
+              "name": "data_exchange",
+              "payload": { "action": "change" }
+            }
+          },
+          {
+            "type": "Footer",
+            "label": "${data.labels.btn_human}",
+            "on-click-action": {
+              "name": "complete",
+              "payload": { "action": "human" }
+            }
+          }
+        ]
+      },
+      "terminal": false
+    }
+  ]
+}

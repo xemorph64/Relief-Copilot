@@ -58,6 +58,9 @@ T = {  # user-facing text; keep each language in step
     "asr_fail": {"mr": "व्हॉइस नोट समजली नाही. कृपया पुन्हा पाठवा किंवा लिहून सांगा.",
                  "hi": "वॉइस नोट समझ नहीं आई। कृपया दोबारा भेजें या लिखकर बताएं।",
                  "en": "I couldn't understand the voice note. Please resend or type it."},
+    "reeval": {"mr": "नवीन शासन निर्णय लागू झाला आहे. तुमची मदत आता {amount} होऊ शकते. जुने अर्ज बदलण्यासाठी 'बदल' दाबा.",
+               "hi": "एक नया शासकीय निर्णय लागू हुआ है। आपकी सहायता अब {amount} हो सकती है। बदलने के लिए 'बदलाव' दबाएं।",
+               "en": "A new government resolution applies to your claim. Your assistance may now be {amount}. Press 'Change' to update."},
 }
 
 
@@ -216,9 +219,20 @@ async def step(claim: dict) -> None:
     d["results"] = results
     claim["state"] = "REVIEW"
     store.save_claim(claim)
-    await wa.send_buttons(phone, _summary(claim), [
-        ("confirm", t("btn_yes", claim["lang"])), ("change", t("btn_change", claim["lang"])),
-        ("human", t("btn_human", claim["lang"]))])
+    summary = _summary(claim)
+    if settings.wa_flow_id:  # native multi-screen review (F11); falls back to buttons otherwise
+        await wa.send_flow(phone, summary, claim["id"])
+    else:
+        await wa.send_buttons(phone, summary, [
+            ("confirm", t("btn_yes", claim["lang"])), ("change", t("btn_change", claim["lang"])),
+            ("human", t("btn_human", claim["lang"]))])
+    try:  # same summary played back as speech for citizens who can't read it
+        from app import tts
+        voice = await tts.synthesize(summary, claim["lang"])
+        await wa.send_audio(phone, voice)
+        store.event(claim["id"], "tts_sent", {"lang": claim["lang"]})
+    except Exception as e:  # noqa: BLE001 - TTS is additive; buttons already delivered
+        store.event(claim["id"], "error", {"stage": "tts", "error": str(e)})
 
 
 def _summary(claim: dict) -> str:

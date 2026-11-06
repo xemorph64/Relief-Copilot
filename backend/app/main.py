@@ -2,20 +2,27 @@ import asyncio
 import json
 import logging
 
+from pathlib import Path
+
 from fastapi import BackgroundTasks, FastAPI, HTTPException, Request, Response
 from fastapi.responses import FileResponse, StreamingResponse
+from fastapi.staticfiles import StaticFiles
 
 from app import agent, store, wa
 from app.config import settings
 
 logging.basicConfig(level=logging.INFO)
 app = FastAPI(title="Relief Copilot backend")
+app.mount("/admin", StaticFiles(directory=Path(__file__).parent / "static", html=True), name="admin")
 
 
 @app.get("/health")
 def health():
     return {"ok": True, "whatsapp_configured": bool(settings.wa_token and settings.wa_phone_number_id),
-            "claude_configured": bool(settings.anthropic_api_key), "asr_configured": bool(settings.bhashini_api_key)}
+            "claude_configured": bool(settings.anthropic_api_key),
+            "groq_configured": bool(settings.groq_api_key),
+            "llm_provider": settings.llm_provider,
+            "asr_configured": bool(settings.bhashini_api_key)}
 
 
 @app.get("/webhook")
@@ -29,7 +36,10 @@ def verify(request: Request):
 @app.post("/webhook")
 async def inbound(request: Request, tasks: BackgroundTasks):
     body = await request.body()
-    if not wa.signature_ok(body, request.headers.get("X-Hub-Signature-256", "")):
+    logging.info("WH raw POST: %s", body[:2000])
+    ok = wa.signature_ok(body, request.headers.get("X-Hub-Signature-256", ""))
+    logging.info("WH signature ok=%s", ok)
+    if not ok:
         raise HTTPException(401)
     for entry in json.loads(body).get("entry", []):
         for change in entry.get("changes", []):
@@ -83,6 +93,24 @@ async def events_stream():
             store.unsubscribe(q)
 
     return StreamingResponse(gen(), media_type="text/event-stream")
+
+
+@app.post("/api/flows/{cid}")
+async def flows_endpoint(cid: int, request: Request):
+    """WhatsApp Flows data-exchange endpoint for the review Flow (F11)."""
+    from app import flows
+    body = await request.body()
+    if not flows.signature_ok(body, request.headers.get("x-flow-request-integrity", "")):
+        raise HTTPException(401)
+    return flows.handle(cid, json.loads(body or b"{}"))
+
+
+@app.post("/api/reeval")
+async def reeval(notify: bool = False):
+    """Retroactive re-evaluation after new rules were ingested (F15). notify=1 also messages
+    citizens whose REVIEW-state claim amounts changed."""
+    from app import reeval as rv
+    return {"changed": rv.reevaluate(notify=notify)}
 
 
 @app.get("/files/{name}")

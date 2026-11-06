@@ -1,8 +1,17 @@
 [
  {
   "rule_id": "MH.PKG_2025_10.HOUSE_FULL_PLAIN",
-  "status": "drafted",
-  "verifications": [],
+  "status": "published",
+  "verifications": [
+   {
+    "by": "demo-verifier-1",
+    "at": "2026-11-05T22:14:40"
+   },
+   {
+    "by": "demo-verifier-2",
+    "at": "2026-11-05T22:14:40"
+   }
+  ],
   "layer": "package",
   "asset_class": "house_full_plain",
   "hazards": [
@@ -40,8 +49,17 @@
  },
  {
   "rule_id": "MH.PKG_2025_10.HOUSE_FULL_HILLY",
-  "status": "drafted",
-  "verifications": [],
+  "status": "published",
+  "verifications": [
+   {
+    "by": "demo-verifier-1",
+    "at": "2026-11-05T22:14:40"
+   },
+   {
+    "by": "demo-verifier-2",
+    "at": "2026-11-05T22:14:40"
+   }
+  ],
   "layer": "package",
   "asset_class": "house_full_hilly",
   "hazards": [
@@ -79,8 +97,17 @@
  },
  {
   "rule_id": "MH.PKG_2025_10.HOUSE_PARTIAL_PUCCA",
-  "status": "drafted",
-  "verifications": [],
+  "status": "published",
+  "verifications": [
+   {
+    "by": "demo-verifier-1",
+    "at": "2026-11-05T22:14:40"
+   },
+   {
+    "by": "demo-verifier-2",
+    "at": "2026-11-05T22:14:41"
+   }
+  ],
   "layer": "package",
   "asset_class": "house_partial_pucca",
   "hazards": [
@@ -118,8 +145,17 @@
  },
  {
   "rule_id": "MH.PKG_2025_10.HOUSE_PARTIAL_KUTCHA",
-  "status": "drafted",
-  "verifications": [],
+  "status": "published",
+  "verifications": [
+   {
+    "by": "demo-verifier-1",
+    "at": "2026-11-05T22:14:41"
+   },
+   {
+    "by": "demo-verifier-2",
+    "at": "2026-11-05T22:14:41"
+   }
+  ],
   "layer": "package",
   "asset_class": "house_partial_kutcha",
   "hazards": [
@@ -157,8 +193,17 @@
  },
  {
   "rule_id": "MH.PKG_2025_10.HUT",
-  "status": "drafted",
-  "verifications": [],
+  "status": "published",
+  "verifications": [
+   {
+    "by": "demo-verifier-1",
+    "at": "2026-11-05T22:14:41"
+   },
+   {
+    "by": "demo-verifier-2",
+    "at": "2026-11-05T22:14:41"
+   }
+  ],
   "layer": "package",
   "asset_class": "hut",
   "hazards": [
@@ -196,8 +241,17 @@
  },
  {
   "rule_id": "MH.PKG_2025_10.CATTLE_SHED",
-  "status": "drafted",
-  "verifications": [],
+  "status": "published",
+  "verifications": [
+   {
+    "by": "demo-verifier-1",
+    "at": "2026-11-05T22:14:41"
+   },
+   {
+    "by": "demo-verifier-2",
+    "at": "2026-11-05T22:14:41"
+   }
+  ],
   "layer": "package",
   "asset_class": "cattle_shed",
   "hazards": [
@@ -235,8 +289,17 @@
  },
  {
   "rule_id": "MH.PKG_2025_10.MILCH_LARGE",
-  "status": "drafted",
-  "verifications": [],
+  "status": "published",
+  "verifications": [
+   {
+    "by": "demo-verifier-1",
+    "at": "2026-11-05T22:14:41"
+   },
+   {
+    "by": "demo-verifier-2",
+    "at": "2026-11-05T22:14:41"
+   }
+  ],
   "layer": "package",
   "asset_class": "milch_large",
   "hazards": [
@@ -274,8 +337,17 @@
  },
  {
   "rule_id": "MH.PKG_2025_10.DRAUGHT_LARGE",
-  "status": "drafted",
-  "verifications": [],
+  "status": "published",
+  "verifications": [
+   {
+    "by": "demo-verifier-1",
+    "at": "2026-11-05T22:14:41"
+   },
+   {
+    "by": "demo-verifier-2",
+    "at": "2026-11-05T22:14:41"
+   }
+  ],
   "layer": "package",
   "asset_class": "draught_large",
   "hazards": [
@@ -313,8 +385,17 @@
  },
  {
   "rule_id": "MH.PKG_2025_10.DRAUGHT_SMALL",
-  "status": "drafted",
-  "verifications": [],
+  "status": "published",
+  "verifications": [
+   {
+    "by": "demo-verifier-1",
+    "at": "2026-11-05T22:14:41"
+   },
+   {
+    "by": "demo-verifier-2",
+    "at": "2026-11-05T22:14:41"
+   }
+  ],
   "layer": "package",
   "asset_class": "draught_small",
   "hazards": [
@@ -352,8 +433,17 @@
  },
  {
   "rule_id": "MH.PKG_2025_10.SHEEP_GOAT",
-  "status": "drafted",
-  "verifications": [],
+  "status": "published",
+  "verifications": [
+   {
+    "by": "demo-verifier-1",
+    "at": "2026-11-05T22:14:41"
+   },
+   {
+    "by": "demo-verifier-2",
+    "at": "2026-11-05T22:14:41"
+   }
+  ],
   "layer": "package",
   "asset_class": "sheep_goat",
   "hazards": [
@@ -391,8 +481,17 @@
  },
  {
   "rule_id": "MH.PKG_2025_10.POULTRY",
-  "status": "drafted",
-  "verifications": [],
+  "status": "published",
+  "verifications": [
+   {
+    "by": "demo-verifier-1",
+    "at": "2026-11-05T22:14:41"
+   },
+   {
+    "by": "demo-verifier-2",
+    "at": "2026-11-05T22:14:41"
+   }
+  ],
   "layer": "package",
   "asset_class": "poultry",
   "hazards": [
@@ -430,8 +529,17 @@
  },
  {
   "rule_id": "MH.PKG_2025_10.BOAT_PARTIAL",
-  "status": "drafted",
-  "verifications": [],
+  "status": "published",
+  "verifications": [
+   {
+    "by": "demo-verifier-1",
+    "at": "2026-11-05T22:14:41"
+   },
+   {
+    "by": "demo-verifier-2",
+    "at": "2026-11-05T22:14:41"
+   }
+  ],
   "layer": "package",
   "asset_class": "boat_partial",
   "hazards": [
@@ -469,8 +577,17 @@
  },
  {
   "rule_id": "MH.PKG_2025_10.BOAT_FULL",
-  "status": "drafted",
-  "verifications": [],
+  "status": "published",
+  "verifications": [
+   {
+    "by": "demo-verifier-1",
+    "at": "2026-11-05T22:14:41"
+   },
+   {
+    "by": "demo-verifier-2",
+    "at": "2026-11-05T22:14:41"
+   }
+  ],
   "layer": "package",
   "asset_class": "boat_full",
   "hazards": [
@@ -508,8 +625,17 @@
  },
  {
   "rule_id": "MH.PKG_2025_10.NET_PARTIAL",
-  "status": "drafted",
-  "verifications": [],
+  "status": "published",
+  "verifications": [
+   {
+    "by": "demo-verifier-1",
+    "at": "2026-11-05T22:14:41"
+   },
+   {
+    "by": "demo-verifier-2",
+    "at": "2026-11-05T22:14:41"
+   }
+  ],
   "layer": "package",
   "asset_class": "net_partial",
   "hazards": [
@@ -547,8 +673,17 @@
  },
  {
   "rule_id": "MH.PKG_2025_10.NET_FULL",
-  "status": "drafted",
-  "verifications": [],
+  "status": "published",
+  "verifications": [
+   {
+    "by": "demo-verifier-1",
+    "at": "2026-11-05T22:14:41"
+   },
+   {
+    "by": "demo-verifier-2",
+    "at": "2026-11-05T22:14:41"
+   }
+  ],
   "layer": "package",
   "asset_class": "net_full",
   "hazards": [

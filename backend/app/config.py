@@ -13,10 +13,17 @@ class Settings(BaseSettings):
     wa_app_secret: str = ""
     wa_verify_token: str = ""
     wa_graph_version: str = "v23.0"
+    wa_flow_id: str = ""  # registered Flow for the review screen (F11); empty = plain buttons
+    flow_endpoint_passphrase: str = ""  # integrity header check for the Flow data endpoint
 
     # Claude (anthropic SDK also reads ANTHROPIC_API_KEY itself)
     anthropic_api_key: str = ""
     claude_model: str = "claude-opus-5-5"
+
+    # Groq (OpenAI-compatible; alternative extraction LLM)
+    groq_api_key: str = ""
+    groq_model: str = "openai/gpt-oss-120b"
+    llm_provider: str = "claude"  # "claude" | "groq"
 
     # Bhashini (ASR / TTS)
     bhashini_user_id: str = ""
