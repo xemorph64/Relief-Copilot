@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relief Copilot — WhatsApp disaster-compensation claims assistant</title>
+<meta name="description" content="Relief Copilot turns a spoken damage report into a rule-matched, evidence-backed, submission-ready government compensation claim.">
+<style>
+  :root { --ink:#1a2330; --muted:#5b6b7e; --brand:#8a3826; --brand2:#c2552e; --bg:#faf7f2; --line:#e8dfd2; }
+  * { box-sizing:border-box; margin:0 }
+  body { font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; color:var(--ink); background:var(--bg); line-height:1.65 }
+  header { padding:56px 24px 40px; max-width:880px; margin:0 auto }
+  .tag { display:inline-block; font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--brand2); border:1px solid var(--brand2); border-radius:999px; padding:2px 12px; margin-bottom:18px }
+  h1 { font-size:clamp(28px,5vw,44px); line-height:1.15; letter-spacing:-.02em; margin-bottom:14px }
+  h1 em { font-style:normal; color:var(--brand) }
+  .lede { font-size:18px; color:var(--muted); max-width:640px }
+  main { max-width:880px; margin:0 auto; padding:0 24px 64px }
+  section { padding:28px 0; border-top:1px solid var(--line) }
+  h2 { font-size:22px; margin-bottom:12px }
+  ol.flow { list-style:none; counter-reset:s }
+  ol.flow li { counter-increment:s; padding:14px 0 14px 56px; position:relative; border-top:1px dashed var(--line) }
+  ol.flow li:first-child { border-top:0 }
+  ol.flow li::before { content:counter(s); position:absolute; left:0; top:12px; width:34px; height:34px; border-radius:50%; background:var(--brand); color:#fff; font-weight:600; display:grid; place-items:center; font-size:15px }
+  ol.flow b { display:block }
+  ol.flow span { color:var(--muted); font-size:15px }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px }
+  .card { background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px 18px }
+  .card b { display:block; margin-bottom:6px; font-size:15px }
+  .card p { color:var(--muted); font-size:14px }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-top:8px }
+  .note { font-size:13px; color:var(--muted) }
+  footer { padding:24px; text-align:center; color:var(--muted); font-size:13px; border-top:1px solid var(--line) }
+  a { color:var(--brand) }
+</style>
+</head>
+<body>
+<header>
+  <span class="tag">Civic tech · Maharashtra disaster relief</span>
+  <h1>Relief Copilot</h1>
+  <p class="lede">A WhatsApp-native assistant that turns a spoken damage report — a voice note in Marathi or Hindi, photos and a GPS pin — into a <em>rule-matched, evidence-backed, submission-ready government compensation claim.</em></p>
+</header>
+<main>
+  <section>
+    <h2>How it works</h2>
+    <ol class="flow">
+      <li><b>Voice note, not paperwork</b><span>The affected citizen describes what happened in their own language. No app to install, no forms to fill.</span></li>
+      <li><b>Speech → structured claim</b><span>Bhashini open-source speech models transcribe; an LLM extracts dates, hazard, assets and location — never money or eligibility.</span></li>
+      <li><b>Rules, not vibes</b><span>A deterministic engine matches the claim against official Maharashtra GRs (fingerprint-verified PDFs, two-person sign-off) to produce the eligible amount with citations.</span></li>
+      <li><b>Submission-ready PDF</b><span>The claim is delivered back as a bilingual PDF with evidence attached — ready to file with the talathi.</span></li>
+    </ol>
+  </section>
+  <section>
+    <h2>Design principles</h2>
+    <div class="grid">
+      <div class="card"><b>Phone number = identity</b><p>No app installs, no logins. The channel citizens already trust.</p></div>
+      <div class="card"><b>Evidence-native</b><span></span><p>Every rupee traces to a published government resolution with page and quote references.</p></div>
+      <div class="card"><b>Rules are signed</b><p>No rule affects an amount until two reviewers sign it against the GR PDF.</p></div>
+      <div class="card"><b>Retroactive redress</b><p>New GRs re-open old claims; citizens are told their compensation may increase.</p></div>
+    </div>
+  </section>
+  <section>
+    <h2>Built with</h2>
+    <div class="cards">
+      <div class="card"><b>WhatsApp Business Platform</b><p>Citizen-facing channel with signed webhooks and idempotent intake.</p></div>
+      <div class="card"><b>Bhashini (ULCA)</b><p>Government speech stack — Marathi/Hindi ASR and TTS.</p></div>
+      <div class="card"><b>Deterministic rule engine</b><p>Python + SHA-256 signed GR PDFs; LGD district masters via data.gov.in.</p></div>
+      <div class="card"><b>Caseworker dashboard</b><p>Confidence-sorted review queue for human officials, live event stream.</p></div>
+    </div>
+  </section>
+</main>
+<footer>Relief Copilot · a student civic-tech project from Pune, India · <span id="yr"></span></footer>
+<script>document.getElementById("yr").textContent = new Date().getFullYear()</script>
+</body>
+</html>
