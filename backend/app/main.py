@@ -1,6 +1,7 @@
 import asyncio
 import json
 import logging
+import mimetypes
 
 from pathlib import Path
 
@@ -18,7 +19,7 @@ app.mount("/admin", StaticFiles(directory=Path(__file__).parent / "static", html
 
 @app.get("/health")
 def health():
-    return {"ok": True, "whatsapp_configured": bool(settings.wa_token and settings.wa_phone_number_id),
+    return {"ok": True, "channel": settings.channel, "whatsapp_configured": wa.configured(),
             "claude_configured": bool(settings.anthropic_api_key),
             "groq_configured": bool(settings.groq_api_key),
             "llm_provider": settings.llm_provider,
@@ -59,6 +60,75 @@ async def _process(msg: dict, name: str):
         await agent.handle(msg, name)
     except Exception:  # noqa: BLE001
         logging.exception("handling %s failed", msg.get("id"))
+
+
+# ---- Twilio channel ------------------------------------------------------------------------
+# Point Twilio's "When a message comes in" (sandbox or sender) at
+#   https://<host>/webhook/twilio
+# Inbound posts are form-encoded and signed with X-Twilio-Signature; they are
+# converted into the Meta-shaped message dicts agent.py already handles.
+
+@app.post("/webhook/twilio")
+async def twilio_inbound(request: Request, tasks: BackgroundTasks):
+    from urllib.parse import parse_qsl
+    raw = (await request.body()).decode("utf-8", "replace")
+    form = dict(parse_qsl(raw, keep_blank_values=True))  # urlencoded, no python-multipart needed
+    ok = wa.twilio_signature_ok(str(request.url), form, request.headers.get("X-Twilio-Signature", ""))
+    if not ok:
+        logging.info("TW signature rejected")
+        raise HTTPException(401)
+    sid = form.get("MessageSid", "")
+    if not sid:
+        return {"ok": True}
+    if not _twilio_is_message(form):  # it's a send/status callback
+        st = form.get("MessageStatus") or form.get("SmsStatus") or ""
+        if st and st != "received":
+            store.event(None, "delivery_status", {"id": sid, "status": st}, "whatsapp")
+        return {"ok": True}
+    if not store.seen(sid):  # Twilio retries deliveries like Meta does
+        tasks.add_task(_process, _twilio_msg(form), form.get("ProfileName", ""))
+    return {"ok": True}  # ack fast; work happens after the response
+
+
+def _twilio_is_message(f: dict) -> bool:
+    """Inbound message vs outbound status callback. Messages have content."""
+    return bool(f.get("Body") or f.get("ButtonPayload")
+                or (f.get("NumMedia") or "0") not in ("0", "", None)
+                or (f.get("Latitude") and f.get("Longitude")))
+
+
+def _twilio_msg(f: dict) -> dict:
+    """Twilio webhook form -> the Meta-shaped msg dict agent.handle() expects."""
+    msg = {"id": f["MessageSid"], "from": f.get("From", "").replace("whatsapp:", "")}
+    if f.get("ButtonPayload"):  # quick-reply tap: id round-trips verbatim
+        msg["type"] = "interactive"
+        msg["interactive"] = {"button_reply": {"id": f["ButtonPayload"],
+                                               "title": f.get("ButtonText") or f.get("Body") or ""}}
+        return msg
+    if f.get("Latitude") and f.get("Longitude"):
+        msg["type"] = "location"
+        try:
+            msg["location"] = {"latitude": float(f["Latitude"]), "longitude": float(f["Longitude"])}
+        except ValueError:
+            msg["location"] = {"latitude": f["Latitude"], "longitude": f["Longitude"]}
+        return msg
+    try:
+        n_media = int(f.get("NumMedia") or 0)
+    except ValueError:
+        n_media = 0
+    if n_media:
+        mime = (f.get("MediaContentType0", "") or "").split(";")[0].strip()
+        kind = "audio" if mime.startswith("audio") else "image"
+        # 'id' carries the fetch URL; download_media() auths it (Twilio = URL-land).
+        sub = {"id": f.get("MediaUrl0", ""), "mime_type": mime}
+        if kind == "image" and f.get("Body"):
+            sub["caption"] = f["Body"]
+        msg["type"] = kind
+        msg[kind] = sub
+        return msg
+    msg["type"] = "text"
+    msg["text"] = {"body": f.get("Body", "")}
+    return msg
 
 
 # ---- dashboard API -------------------------------------------------------------------------
@@ -119,3 +189,14 @@ def files(name: str):
     if p.parent != (settings.media_dir / "pdf").resolve() or not p.exists():
         raise HTTPException(404)
     return FileResponse(p, media_type="application/pdf", filename=name)
+
+
+@app.get("/mediafile/{name}")
+def mediafile(name: str):
+    """Publicly fetchable media for the Twilio channel (Twilio pulls MediaUrl
+    itself; it has no upload API). Files are what send_audio/... parked there."""
+    p = (settings.media_dir / "serve" / name).resolve()
+    if p.parent != (settings.media_dir / "serve").resolve() or not p.exists():
+        raise HTTPException(404)
+    mime, _ = mimetypes.guess_type(name)
+    return FileResponse(p, media_type=mime or "application/octet-stream")

@@ -1,0 +1,11 @@
+# Relief Copilot hands-free demo script.
+# Run:  python -m app.simulate script data/demo_script.txt
+# Every non-# line is "spoken" by the simulated citizen. PAUSE n waits n seconds.
+/loc
+माझं नाव ओजस आहे. २० जुलै २०२६ रोजी मुंबई भीषण पावसामुळे माझा घराचा ताफा पूर्ण पाहाऱ्यात नुकसान झाला.
+PAUSE 1
+/state
+बरोबर आहे
+PAUSE 1
+/state
+/facts

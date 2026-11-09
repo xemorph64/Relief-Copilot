@@ -68,6 +68,17 @@ def t(key: str, lang: str | None) -> str:
     return T[key].get(lang or "mr", T[key]["en"])
 
 
+# Typed versions of the review buttons (lowercase). Needed because Twilio trials
+# lack the Content API, so interactive quick-replies can degrade to "reply with
+# one of these words".
+_TYPED_BUTTONS = {
+    "confirm": "confirm", "yes": "confirm", "ok": "confirm", "होय": "confirm",
+    "बरोबर": "confirm", "बरोबर आहे": "confirm", "सही": "confirm", "सही है": "confirm", "ठीक": "confirm",
+    "change": "change", "बदल": "change", "बदल करायचा": "change", "बदलाव": "change",
+    "human": "human", "official": "human", "अधिकारी": "human", "अधिकाऱ्याशी बोला": "human", "अधिकारी से बात": "human",
+}
+
+
 async def handle(msg: dict, profile_name: str = "") -> None:
     """Entry point for one inbound WhatsApp message (already signature-checked and deduped)."""
     phone = msg["from"]
@@ -110,6 +121,11 @@ async def handle(msg: dict, profile_name: str = "") -> None:
             if body.upper() in ("HUMAN", "STOP"):
                 claim["data"] = d
                 return await _on_button(claim, "human")
+            if claim["state"] == "REVIEW" and body.lower() in _TYPED_BUTTONS:
+                # interactive buttons unavailable / templateless: typed reply works the same
+                store.event(claim["id"], "button", {"id": _TYPED_BUTTONS[body.lower()], "typed": True})
+                claim["data"] = d
+                return await _on_button(claim, _TYPED_BUTTONS[body.lower()])
             d.setdefault("utterances", []).append({"kind": "text", "text": body})
         else:
             store.event(claim["id"], "ignored", {"type": kind})

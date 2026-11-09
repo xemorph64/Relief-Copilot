@@ -1,4 +1,5 @@
 from pathlib import Path
+from pydantic import AliasChoices, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -7,7 +8,12 @@ ROOT = Path(__file__).resolve().parent.parent
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=ROOT / ".env", extra="ignore")
 
-    # WhatsApp Cloud API
+    # Which WhatsApp backend to use: "meta" (WhatsApp Cloud API) or "twilio"
+    # (Programmable Messaging). agent.py only talks to app.wa, so switching is
+    # an env change, not a code change.
+    channel: str = Field("meta", validation_alias=AliasChoices("channel", "message_channel"))
+
+    # WhatsApp Cloud API (meta)
     wa_token: str = ""
     wa_phone_number_id: str = ""
     wa_app_secret: str = ""
@@ -15,6 +21,13 @@ class Settings(BaseSettings):
     wa_graph_version: str = "v23.0"
     wa_flow_id: str = ""  # registered Flow for the review screen (F11); empty = plain buttons
     flow_endpoint_passphrase: str = ""  # integrity header check for the Flow data endpoint
+
+    # Twilio WhatsApp
+    twilio_account_sid: str = ""
+    twilio_auth_token: str = ""
+    twilio_whatsapp_from: str = ""  # e.g. "whatsapp:+14155238886" (sandbox number)
+    twilio_qr_sid: str = ""        # HX.. quick-reply Content template (ids confirm/change/human)
+    twilio_validate: bool = True   # reject /webhook/twilio posts whose X-Twilio-Signature doesn't match
 
     # Claude (anthropic SDK also reads ANTHROPIC_API_KEY itself)
     anthropic_api_key: str = ""

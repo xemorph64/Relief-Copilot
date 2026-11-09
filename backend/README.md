@@ -9,11 +9,43 @@ pip install -r requirements.txt
 cp .env.example .env        # fill in keys
 python -m pytest -q         # rule engine + agent flow tests
 python -m uvicorn app.main:app --port 8000
-cloudflared tunnel --url http://localhost:8000   # public HTTPS URL for Meta's webhook
+cloudflared tunnel --url http://localhost:8000   # public HTTPS URL for the WhatsApp webhook
 ```
+
+Set `MESSAGE_CHANNEL=twilio` (simpler; default below) or `meta` (Cloud API above).
+
+## Twilio channel (default, simplest)
+
+No Meta app dashboard, no System User tokens, no webhook verify-token dance:
+sandbox works in minutes.
+
+1. console.twilio.com > Messaging > WhatsApp sandbox. Join the sandbox from
+   your phone (send the shown `join` code to the sandbox number).
+2. Sandbox settings > "When a message comes in" = `https://<tunnel>/webhook/twilio` (POST).
+3. `.env`: `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN` (Console > Account Info),
+   `TWILIO_WHATSAPP_FROM=whatsapp:<sandbox number>`, `MESSAGE_CHANNEL=twilio`,
+   and `PUBLIC_BASE_URL=https://<tunnel>` (Twilio fetches media/PDFs from us).
+4. Register the quick-reply template for the review buttons (one-time, in-session
+   messages need **no WhatsApp approval**), and put the returned `sid` in `TWILIO_QR_SID`:
+   ```bash
+   curl -X POST https://content.twilio.com/v1/Content -u $TWILIO_ACCOUNT_SID:$TWILIO_AUTH_TOKEN \
+     -H "Content-Type: application/json" -d '{
+     "friendly_name": "relief_quick_reply", "language": "en",
+     "types": {"twilio/quick-reply": {"body": "आपला निर्णय दाबा — choose one:",
+       "actions": [{"title": "{{1}}", "id": "confirm"},
+                   {"title": "{{2}}", "id": "change"},
+                   {"title": "{{3}}", "id": "human"}]}}}'
+   ```
+
+Channel notes: no native Flows (review degrades to the buttons flow, F11),
+no REST read receipts (`read` arrives on status callbacks instead), media is
+delivered via URL (`/files/`, `/mediafile/`) rather than uploaded.
+
+## Meta channel (WhatsApp Cloud API)
 
 In Meta's app dashboard set the webhook to `https://<tunnel>/webhook`, verify token = `WA_VERIFY_TOKEN`,
 subscribe to `messages`. Put the tunnel URL in `PUBLIC_BASE_URL` so PDFs can be delivered.
+Flow + Flows data endpoint config below applies only to this channel.
 
 ## Admin dashboard
 

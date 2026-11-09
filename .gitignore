@@ -1,1 +1,11 @@
 uvicorn.log
+backend/.env
+__pycache__/
+.pytest_cache/
+backend/data/relief.db*
+backend/data/media/
+backend/data/serve/
+data/relief.db*
+data/media/
+data/serve/
+nohup.out
